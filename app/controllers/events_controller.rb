@@ -13,7 +13,7 @@ def create
   @post = Post.new(post_params)
 
   if @post.save
-    redirect_to @post
+    redirect_to root
   else
     render :new
   end
@@ -25,7 +25,7 @@ end
 private
 
 def post_params
- params.require(@post).permit(:title,:content,:user_id)
+ params.require(:post).permit(:title,:content)
 end
 
 end
