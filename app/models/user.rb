@@ -3,7 +3,26 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :posts
+
+  # name
+  has_many :created_events, foreign_key: 'creator_id', class_name: "events"
+  
+  has_many :attend_events, foreign_key: 'attendee_id'
+  has_many :attended_events, through: :attend_events
+  # has_many :events
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   has_one_attached :avatar
   after_commit :add_default_avatar, on: %i[create update]
